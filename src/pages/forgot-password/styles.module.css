@@ -1,0 +1,40 @@
+.section {
+  max-width: 575px;
+  margin: 0px auto;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.form {
+  box-shadow: 0px 0px 4px #ffffff;
+  background: #ffffff;
+  border-radius: 5px;
+  padding: 40px 80px 25px;
+}
+
+.feilds {
+  margin-bottom: 24px;
+}
+.disable {
+  cursor: not-allowed;
+}
+.disable div {
+  pointer-events: none;
+  opacity: 0.7;
+}
+.resendEmail {
+  cursor: pointer;
+  font-size: 13px;
+  margin-top: -18px;
+  color: #ffb121;
+  font-weight: 500;
+  width: max-content;
+}
+
+@media (max-width: 575px) {
+  .form {
+    padding: 15px 15px 40px 15px;
+  }
+}

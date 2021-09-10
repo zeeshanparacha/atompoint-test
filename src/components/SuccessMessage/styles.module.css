@@ -1,0 +1,19 @@
+.section {
+  width: 100%;
+  text-align: center;
+}
+
+.heading {
+  margin: 10px 0;
+  color: rgb(var(--light-262626-F7F7F7));
+  font-weight: 600;
+  font-size: 26px;
+  line-height: 42px;
+}
+
+.para {
+  margin-bottom: 20px;
+  color: #808080;
+  font-size: 14px;
+  line-height: 18px;
+}

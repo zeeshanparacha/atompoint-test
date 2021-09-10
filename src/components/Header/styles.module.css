@@ -1,0 +1,39 @@
+.section {
+  background: transparent;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  margin-bottom: 28px;
+}
+
+.backButton {
+  cursor: pointer;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  margin-bottom: 17px;
+}
+
+.backButton p {
+  margin-left: 7.5px;
+  font-size: 14px;
+  line-height: 18px;
+  color: #808080;
+}
+
+.section h1 {
+  font-weight: 600;
+  font-size: 34px;
+  line-height: 42px;
+  color: #262626;
+}
+
+@media (max-width: 575px) {
+  .section {
+    margin-bottom: 15px;
+  }
+
+  .section h1 {
+    font-size: 30px;
+  }
+}
