@@ -9,7 +9,11 @@
   outline: none;
   user-select: none;
 }
-
+h1,
+p {
+  margin: 0px;
+  padding: 0px;
+}
 .background {
   background: #f7f7f7;
   min-height: 100vh;

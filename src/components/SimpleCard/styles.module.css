@@ -1,0 +1,22 @@
+.card {
+  width: 100%;
+  background: #ffffff;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px;
+}
+.card h1 {
+  color: #262626;
+  font-weight: 600;
+  font-size: 15px;
+  line-height: 26px;
+}
+.card p {
+  color: #262626;
+  font-weight: 600;
+  font-size: 25px;
+  line-height: 40px;
+  font-family: DM Mono;
+}

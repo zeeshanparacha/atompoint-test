@@ -1,29 +1,25 @@
-import React, { useEffect, useState, Fragment } from "react";
+import React, { useEffect, useState } from "react";
 import { db } from "../../config/firebase";
-export default function App() {
+import Summary from "./summary";
+import Header from "./selections";
+import styles from "./styles.module.css";
 
+export default function App() {
+  const [data, setData] = useState([])
   useEffect(() => {
-    console.log('db', db.ref("/").once("value"))
-    db.ref('/employees').orderByChild("email")
-      .equalTo('e1000@gmail.com').once('value', (snapshot) => {
+    db.ref('/').child("employees").orderByChild("email")
+      .equalTo('e1001@gmail.com').once('value', (snapshot) => {
         const data = snapshot.val();
-        console.log('data', data)
+        setData(data)
       });
   }, []);
 
   return (
-    <>
-      <h1>data from google sheets</h1>
-      <ul>
-        {/* {data.map((item, i) => (
-          <Fragment key={i}>
-            <li>URL -- {item.URL}</li>
-            <li>Email - {item.email}</li>
-            <li>Token - {item.token}</li>
-            <br />
-          </Fragment>
-        ))} */}
-      </ul>
-    </>
+    <div className={styles.container}>
+      <Header
+        isAdmin
+      />
+      <Summary data={data} />
+    </div>
   );
 }

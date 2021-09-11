@@ -1,0 +1,84 @@
+.container {
+  width: 100%;
+  position: relative;
+}
+
+.dropdown {
+  background: #ffffff;
+  border: 1.8px solid #d9d9d9;
+  box-sizing: border-box;
+  border-radius: 3px;
+  padding: 9px 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  height: 44px;
+}
+
+.icon svg {
+  width: 12px;
+  height: 9px;
+}
+
+.values {
+  color: #262626;
+  font-size: 14px;
+  line-height: 18px;
+}
+
+.placeholder {
+  color: #808080;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 18px;
+}
+
+.modal {
+  position: absolute;
+  background: #ffffff;
+  box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
+  border-radius: 3px;
+  width: 100%;
+  margin-top: 5px;
+  transition: 0.5s;
+  display: none;
+  box-shadow: 0px 4px 5px rgba(0, 0, 0, 0.1) !important;
+}
+
+.modal p {
+  font-size: 12px;
+  color: #404040;
+  text-align: center;
+}
+
+.toggle {
+  z-index: 100;
+  display: block;
+}
+
+.dropdownContent {
+  padding: 0px 12px;
+}
+
+.message {
+  color: #404040 !important;
+  font-size: 13px !important;
+}
+
+.items {
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid #d9d9d9;
+  cursor: pointer;
+}
+
+.list {
+  font-size: 14px;
+  line-height: 26px;
+  padding: 8px 0px;
+}
+
+.items:last-child {
+  border: none;
+}

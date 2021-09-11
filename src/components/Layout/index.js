@@ -1,8 +1,9 @@
 import React from "react";
-
-const Layout = ({ children }) => {
+import Navbar from "../Navbar";
+const Layout = ({ children, isNav }) => {
   return (
     <div className="background">
+      {isNav && <Navbar />}
       <div className="wrapper">
         {children}
       </div>
