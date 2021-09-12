@@ -1,3 +1,22 @@
 .container {
   margin-top: 24px;
 }
+.flex {
+  display: flex;
+  align-items: center;
+}
+.flex > div:first-child {
+  width: 30%;
+}
+.flex > div:last-child {
+  width: 67%;
+  margin-left: 3%;
+}
+@media only screen and (max-width: 991px) {
+  .flex {
+    flex-direction: column;
+  }
+  .flex > div {
+    width: 100% !important;
+  }
+}

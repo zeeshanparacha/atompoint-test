@@ -1,0 +1,6 @@
+.table {
+  position: relative;
+}
+.table > div:first-child {
+  margin-bottom: 20px;
+}

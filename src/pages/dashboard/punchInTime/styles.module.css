@@ -1,0 +1,14 @@
+.container {
+  margin: 20px 0px;
+  background: #ffffff;
+  border-radius: 10px;
+  padding: 22px;
+}
+.container > div {
+  min-height: 200px !important;
+}
+@media only screen and (max-width: 575px) {
+  .container {
+    padding: 22px 15px 22px 5px;
+  }
+}

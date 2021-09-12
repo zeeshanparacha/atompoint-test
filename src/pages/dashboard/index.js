@@ -1,7 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { db } from "../../config/firebase";
 import Summary from "./summary";
-import Header from "./selections";
+import Header from "./header";
+import PunchInTime from "./punchInTime";
+import Absents from "./absents";
+import HoursWorked from "./hoursWorked";
+
 import styles from "./styles.module.css";
 
 export default function App() {
@@ -16,10 +20,13 @@ export default function App() {
 
   return (
     <div className={styles.container}>
-      <Header
-        isAdmin
-      />
+      <Header isAdmin />
       <Summary data={data} />
+      <PunchInTime data={data} />
+      <div className={styles.flex}>
+        <Absents data={data} />
+        <HoursWorked data={data} />
+      </div>
     </div>
   );
 }

@@ -1,43 +1,26 @@
 import React from "react";
 import Card from "../../../components/Card";
 import styles from "./styles.module.css";
-import { totalHours } from "../../../utils/functions";
+import { getSummary } from "../../../utils/functions";
 import SimpleCard from "../../../components/SimpleCard";
 
 const Summary = ({ data }) => {
-  const monthData = Object.keys(data)
-    .filter(item => data[item]?.Date?.includes('Mar'))
-    .map(item => data[item])
-
-  console.log(totalHours(monthData))
+  const summary = getSummary(data, 'Mar')
+  const isNotPresent = summary['Total Hours'] < 1;
+  console.log('summary', summary)
   return (
     <div className={styles.container}>
-      <Card heading="Attendence Summary">
+      <Card heading="Score" textEffect="Summary">
         <div className={styles.records}>
-          <div className={styles.box}>
-            <SimpleCard heading="Total Hours" value="163" />
-          </div>
-          <div className={styles.box}>
-            <SimpleCard heading="Absences" value="2" />
-          </div>
-          <div className={styles.box}>
-            <SimpleCard heading="Avg. Hours" value="7.5" />
-          </div>
-          <div className={styles.box}>
-            <SimpleCard heading="Max Hours" value="9.25" />
-          </div>
-          <div className={styles.box}>
-            <SimpleCard heading="Min Hours" value="6.55" />
-          </div>
-          <div className={styles.box}>
-            <SimpleCard heading="Days < 8" value="1" danger />
-          </div>
-          <div className={styles.box}>
-            <SimpleCard heading="Present Days" value="21/22" />
-          </div>
-          <div className={styles.box}>
-            <SimpleCard heading="Missed Punch-outs" value="0" />
-          </div>
+          {Object.keys(summary).map(key => {
+            const error = isNotPresent
+              || (key === 'Min Hours' && summary[key] < 8)
+              || (key === 'Days < 8' && summary[key] > 0)
+              || (key === 'Missed Punch Outs' && summary[key] > 0)
+            return <div className={styles.box}>
+              <SimpleCard heading={key} value={summary[key]} error={error} />
+            </div>
+          })}
         </div>
       </Card>
     </div>

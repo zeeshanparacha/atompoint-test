@@ -1,0 +1,66 @@
+p {
+  margin: 0;
+}
+
+.ant-table.ant-table-small {
+  border-radius: 5px;
+  overflow: hidden;
+  border: 1px solid #d9d9d9;
+  box-sizing: border-box;
+  background: #ffffff;
+}
+
+.ant-table-cell p {
+  margin: 0px;
+}
+
+tbody tr td:first-child,
+thead tr td:first-child {
+  padding-left: 15px !important;
+  padding-right: 15px !important;
+}
+
+.ant-table-thead
+  > tr
+  > th:not(:last-child):not(.ant-table-selection-column)
+  :not(.ant-table-row-expand-icon-cell):not([colspan])::before {
+  background: transparent !important;
+}
+
+.ant-table tbody .title {
+  font-family: "DM Mono", monospace;
+}
+
+.ant-table-content {
+  overflow: auto;
+}
+
+.ant-table tbody .ant-table-cell {
+  font-family: "DM Mono", monospace;
+  font-size: 12px;
+  line-height: 18px;
+  width: max-content;
+}
+
+.ant-table-thead > tr > th {
+  font-weight: 400 !important;
+  color: #262626 !important;
+  background-color: #f7f7f7 !important;
+  border-bottom-color: #d9d9d9;
+  font-size: 13px;
+}
+.ant-table-column-sorter-up,
+.ant-table-column-sorter-down {
+  font-size: 9px;
+}
+.ant-table-column-sorter-up svg path,
+.ant-table-column-sorter-down svg path {
+  fill: #d9d9d9;
+}
+.ant-table-tbody > tr.ant-table-row:hover > td {
+  background: #f7f7f7;
+}
+.ant-table-tbody > tr > td {
+  border-bottom-color: #d9d9d9;
+  padding: 12px 30px 12px 8px !important;
+}

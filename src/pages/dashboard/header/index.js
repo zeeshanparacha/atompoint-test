@@ -1,32 +1,30 @@
-import React, { useState, Fragment } from "react";
+import React from "react";
 import Dropdown from "../../../components/Dropdown";
-import Label from "../../../components/Label";
-import { ReactComponent as User } from "../../../images/user.svg"
+import { ReactComponent as User } from "../../../images/email.svg"
+import { ReactComponent as DateIcon } from "../../../images/date.svg"
 import { dates } from "../../../utils/locales";
 import styles from "./styles.module.css";
 
 const Header = ({ isAdmin, _handleDateSelect, _handleUsersSelect, date, user }) => {
   return (
     <div className={styles.container}>
-      <div>
-        <Label title="Select Month" />
+      <div className={styles.dropdown}>
+        <DateIcon />
         <Dropdown
           value={date || "March"}
-          onSelect={_handleDateSelect}
           list={dates}
-          placeholder="Select Month"
-        />
+          placeholder="Select month"
+          onSelect={(value) => _handleDateSelect(value)} />
       </div>
       <div>
         {isAdmin ? (
-          <Fragment>
-            <Label title="Select Users" />
+          <div className={styles.dropdown}>
+            <User />
             <Dropdown
-              onSelect={_handleUsersSelect}
               value={user}
-              placeholder="Select User"
-            />
-          </Fragment>
+              placeholder="Select user"
+              onSelect={(value) => _handleUsersSelect(value)} />
+          </div>
         ) : (
           <div className={styles.information}>
             <div className={styles.icon}><User /></div>

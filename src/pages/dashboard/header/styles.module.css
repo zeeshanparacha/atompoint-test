@@ -1,0 +1,58 @@
+.container {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+  background: #ffffff;
+  border-radius: 5px;
+  padding: 0px 30px;
+}
+.container > div {
+  width: 180px;
+}
+.information {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+.icon {
+  width: 36px;
+  height: 36px;
+  background: #f7f7f7;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  margin-right: 8px;
+}
+.icon svg path {
+  fill: #262626;
+}
+.dropdown {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  border-bottom: 2px solid #f7f7f7;
+  margin: 5px 0px;
+}
+.dropdown > div > div:first-child {
+  background: transparent !important;
+  border: none;
+  height: 40px;
+}
+.dropdown > div > div:last-child {
+  top: 30px;
+  left: -15px;
+  width: 107%;
+  background: #f7f7f7;
+}
+.dropdown > div > div p {
+  margin: 0px;
+}
+.dropdown svg path {
+  fill: #808080;
+}
+.container > div:first-child > svg path {
+  stroke: #808080;
+}

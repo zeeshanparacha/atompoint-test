@@ -1,0 +1,15 @@
+.bottomOutline {
+  position: relative;
+  z-index: 1;
+}
+
+.bottomOutline:after {
+  content: "";
+  position: absolute;
+  border-bottom: 5px solid #ffb121;
+  bottom: 6px;
+  width: 102%;
+  height: 8px;
+  left: 0px;
+  z-index: -1;
+}

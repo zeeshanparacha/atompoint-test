@@ -20,3 +20,6 @@
   line-height: 40px;
   font-family: DM Mono;
 }
+.error {
+  background: #ef464633 !important;
+}

@@ -1,0 +1,59 @@
+.recharts-cartesian-axis-ticks {
+  font-size: 10px;
+  line-height: 13px;
+  color: #808080;
+}
+
+.recharts-cartesian-axis-line,
+.recharts-cartesian-axis-tick-line {
+  stroke: #f7f7f7;
+}
+
+.recharts-tooltip-wrapper {
+  font-size: 13px !important;
+}
+
+.recharts-cartesian-grid-horizontal line,
+.recharts-cartesian-grid-vertical line {
+  stroke: #f7f7f7;
+}
+
+.dashboard-graph {
+  margin-left: -4.5%;
+  min-height: 400px !important;
+}
+
+.recharts-cartesian-axis-ticks tspan {
+  font-family: DM Mono;
+}
+.recharts-line-dots circle {
+  fill: #ffffff;
+}
+.recharts-default-tooltip {
+  background: #ffffff !important;
+  border-color: #ffffff !important;
+  box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
+  border-radius: 3px;
+}
+.recharts-default-tooltip p {
+  color: #262626;
+  font-family: DM Mono;
+}
+.recharts-tooltip-item-list span {
+  font-family: DM Mono;
+}
+.recharts-line path {
+  stroke: #2fdd89 !important;
+}
+.label {
+  display: flex;
+  align-items: center;
+}
+
+.label p {
+  font-size: 10px;
+  line-height: 12px;
+  color: #808080;
+  font-family: DM Mono;
+  margin-right: 5px;
+}

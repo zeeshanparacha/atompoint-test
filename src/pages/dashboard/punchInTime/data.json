@@ -1,0 +1,48 @@
+[
+  {
+    "name": "Jan",
+    "data": 7000
+  },
+  {
+    "name": "Feb",
+    "data": 4398
+  },
+  {
+    "name": "Mar",
+    "data": 9800
+  },
+  {
+    "name": "Apr",
+    "data": 3908
+  },
+  {
+    "name": "May",
+    "data": 4800
+  },
+  {
+    "name": "Jun",
+    "data": 3800
+  },
+  {
+    "name": "Jul",
+    "data": 4300
+  },
+  {
+    "name": "Aug",
+    "data": 1200
+  }, {
+    "name": "Sep",
+    "data": 5500
+  }, {
+    "name": "Oct",
+    "data": 8800
+  },
+  {
+    "name": "Nov",
+    "data": 7000
+  },
+  {
+    "name": "Dec",
+    "data": 10000
+  }
+]
