@@ -5,6 +5,7 @@ export const LOADING = 'LOADING'
 export const CLEAR = 'CLEAR'
 export const SUCCESS = 'SUCCESS'
 export const LOGOUT = 'LOGOUT'
+export const ALL_USERS = 'ALL_USERS'
 
 
 

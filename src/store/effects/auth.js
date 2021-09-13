@@ -1,4 +1,4 @@
-import { loading, error, login, signUp, success, clear, logOut } from "../actions/auth";
+import { loading, error, login, signUp, success, clear, logOut, getAllUsers } from "../actions/auth";
 import { auth, db } from "../../config/firebase";
 import history from "../../utils/history";
 
@@ -7,7 +7,10 @@ export const signIn = (email, password) => {
     dispatch(loading());
     try {
       const response = await auth.signInWithEmailAndPassword(email, password)
-      dispatch(getUser(response.user.uid))
+      await dispatch(getUser(response.user.uid))
+      if (response.user.role === 'admin') {
+        await dispatch(getUsers(response.user.uid))
+      }
       history.push("/dashboard")
       return setTimeout(() => dispatch(clear()), 3000)
     } catch (e) {
@@ -22,6 +25,23 @@ export const signIn = (email, password) => {
   }
 }
 
+export const getUsers = uid => {
+  return async (dispatch) => {
+    try {
+      await db
+        .ref('/users').once('value').then((snapshot) => {
+          const users = snapshot.val()
+          console.log('users', users)
+          const filter = users?.filter(item => item.uid !== uid)
+          dispatch(getAllUsers(filter))
+        });
+    } catch (e) {
+      dispatch(error("something went wrong, Try later!"));
+      return setTimeout(() => dispatch(clear()), 3000)
+    }
+  }
+}
+
 export const getUser = uid => {
   return async (dispatch) => {
     try {
@@ -30,7 +50,8 @@ export const getUser = uid => {
           dispatch(login(snapshot.val()))
         });
     } catch (e) {
-      alert(e)
+      dispatch(error(e));
+      return setTimeout(() => dispatch(clear()), 3000)
     }
   }
 }
@@ -115,7 +136,9 @@ export const confirmResetPassword = (code, password) => {
 export const signOut = () => {
   return async (dispatch) => {
     try {
-      auth.signOut().then(() => dispatch(logOut()))
+      await auth.signOut().then(() => {
+        dispatch(logOut())
+      })
     } catch (e) {
       dispatch(error(e));
       return setTimeout(() => dispatch(clear()), 3000)

@@ -5,6 +5,7 @@ const INITIAL_STATE = {
   error: "",
   user: JSON.parse(localStorage.getItem('user')),
   success: "",
+  allUsers: []
 };
 
 export const auth = (state = INITIAL_STATE, action) => {
@@ -16,7 +17,8 @@ export const auth = (state = INITIAL_STATE, action) => {
     case constants.SUCCESS: return { ...state, loading: false, success: action.payload };
     case constants.ERROR: return { ...state, loading: false, error: action.payload };
     case constants.CLEAR: return { ...state, loading: false, error: "", success: "" };
-    case constants.LOGOUT: localStorage.removeItem('user'); return { ...state, user: null };
+    case constants.ALL_USERS: return { ...state, allUsers: action.payload }
+    case constants.LOGOUT: localStorage.removeItem('user'); return { ...state, user: null, loading: false, error: "" };
     default:
       return state;
   }

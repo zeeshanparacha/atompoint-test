@@ -49,53 +49,52 @@ const totalHours = (days) => {
 };
 
 const getAbsences = (days) => days.filter((item) => !item?.punchInTIme);
-const getMaxHours = (days) =>
-  Math.max(...days.map((h) => parseHour(h.hoursWorked)), 0);
-const getMinHours = (days) =>
-  Math.min(
-    ...days
-      .filter((item) => item.hoursWorked)
-      .map((h) => parseHour(h.hoursWorked)),
-    0
-  );
+
+const getMaxHours = (days) => Math.max(...days.map((h) => h.hoursWorked), 0);
+
+const getMinHours = (days) => Math.min(...days.filter((item) => item.hoursWorked > 0).map(h => h.hoursWorked))
+
 const getAvgHours = (days) => totalHours(days) / days.length;
+
 const getDaysLess8 = (days) =>
   days.filter((item) => item?.hoursWorked < 8).length || 0;
+
 const getMissedPOuts = (days) =>
   days.filter((item) => !item?.punchInOut).length || 0;
 
-export const getSummary = (days, month) => {
-  const tDays = workingDays(days, month);
-  return {
-    "Total Hours": totalHours(tDays),
-    Absences: getAbsences(tDays).length || 0,
-    "Max Hours": getMaxHours(tDays),
-    "Min Hours": getMinHours(tDays),
-    "Avg. Hours": getAvgHours(tDays).toFixed(2),
-    "Days < 8": getDaysLess8(tDays),
-    "Present Days": `${tDays.length - getAbsences(tDays)}/${tDays.length}`,
-    "Missed Punch Outs": getMissedPOuts(tDays),
-  };
-};
+export const getTotalWorkedHours = (days, month) => workingDays(days, month);
 
 export const getAbsentDates = (days, month) => {
   const tDays = workingDays(days, month);
   return getAbsences(tDays);
 };
 
-export const getTotalWorkedHours = (days, month) => workingDays(days, month);
+export const getSummary = (days, month) => {
+  const tDays = workingDays(days, month);
+  return {
+    "Total Hours": Number(totalHours(tDays)).toFixed(2),
+    Absences: getAbsences(tDays).length || 0,
+    "Max Hours": getMaxHours(tDays),
+    "Min Hours": getMinHours(tDays) === Infinity ? 0 : getMinHours(tDays),
+    "Avg. Hours": getAvgHours(tDays).toFixed(2),
+    "Days < 8": getDaysLess8(tDays),
+    "Present Days": `${tDays?.length - getAbsences(tDays).length}/${tDays.length}`,
+    "Missed Punch Outs": getMissedPOuts(tDays),
+  };
+};
+
 
 export const getPunchInTime = (days, month) => {
   const tDays = workingDays(days, month);
   return tDays
-    .filter((item) => item?.punchInTIme)
     .map((item) => {
       let time = item?.punchInTIme?.split(/[AM PM]/)[0];
       let [hour, minutes] = time?.split(":");
-      let tTime = Math.floor(Number(hour) + Number(minutes) / 60);
+      let tTime = Math.floor(Number(hour) + Number(minutes) / 60) || 0;
       return {
         time: tTime,
         label: item?.punchInTIme,
+        date: item?.Date
       };
     });
 };

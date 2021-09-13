@@ -38,4 +38,10 @@ export const logOut = () => ({
   type: constants.LOGOUT,
 })
 
+export const getAllUsers = (users) => {
+  return {
+    type: constants.ALL_USERS,
+    payload: users
+  }
+}
 

@@ -91,7 +91,7 @@ const Login = () => {
         </div>
         <div className={`${styles.feilds} ${loading && styles.disable}`}>
           <Button
-            onClick={_handleClick}
+            onClick={() => _handleClick()}
             fontWeight="600"
             borderRadius="3px"
             background="#FFB121"

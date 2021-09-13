@@ -1,5 +1,6 @@
 .container {
   margin-top: 24px;
+  position: relative;
 }
 .flex {
   display: flex;

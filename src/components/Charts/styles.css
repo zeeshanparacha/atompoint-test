@@ -57,3 +57,10 @@
   font-family: DM Mono;
   margin-right: 5px;
 }
+.custom-tooltip {
+  background-color: #ffffff;
+  border-radius: 5px;
+  padding: 10px;
+  z-index: 1;
+  border: 1px solid #d9d9d9;
+}

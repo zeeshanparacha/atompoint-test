@@ -3,9 +3,12 @@ import Table from "../../../components/Table";
 import Card from "../../../components/Card";
 import { getAbsentDates } from "../../../utils/functions";
 import styles from "./styles.module.css";
+import { useSelector } from "react-redux";
 
-const Absents = ({ data }) => {
-  const dates = getAbsentDates(data, "Mar")
+const Absents = () => {
+  const user = useSelector(state => state?.users?.data);
+  const month = useSelector(state => state?.users?.month);
+  const dates = getAbsentDates(user, month)
 
   const columns = [
     {

@@ -1,31 +1,37 @@
-import React, { useEffect, useState } from "react";
-import { db } from "../../config/firebase";
+import React, { useEffect } from "react";
+import { fetchUserData } from "../../store/effects/users";
+import { useDispatch, useSelector } from "react-redux";
 import Summary from "./summary";
 import Header from "./header";
 import PunchInTime from "./punchInTime";
 import Absents from "./absents";
 import HoursWorked from "./hoursWorked";
-
+import Loader from "../../components/Loader";
+import Error from "../../components/Error404";
 import styles from "./styles.module.css";
 
 export default function App() {
-  const [data, setData] = useState([])
+  const dispatch = useDispatch()
+  const loading = useSelector(state => state?.users?.loading);
+  const user = useSelector(state => state?.users?.data);
+  const email = useSelector(state => state?.auth?.user?.email);
+
   useEffect(() => {
-    db.ref('/').child("employees").orderByChild("email")
-      .equalTo('e1001@gmail.com').once('value', (snapshot) => {
-        const data = snapshot.val();
-        setData(data)
-      });
-  }, []);
+    dispatch(fetchUserData(email))
+    // eslint-disable-next-line
+  }, [email]);
+
+  if (loading) return <Loader />
+  if (!user) return <Error />
 
   return (
-    <div className={styles.container}>
+    <div className={`${styles.container}`}>
       <Header isAdmin />
-      <Summary data={data} />
-      <PunchInTime data={data} />
+      <Summary />
+      <PunchInTime />
       <div className={styles.flex}>
-        <Absents data={data} />
-        <HoursWorked data={data} />
+        <Absents />
+        <HoursWorked />
       </div>
     </div>
   );

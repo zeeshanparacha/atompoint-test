@@ -1,20 +1,31 @@
-import React from "react";
+import React, { useState } from "react";
 import Dropdown from "../../../components/Dropdown";
 import { ReactComponent as User } from "../../../images/email.svg"
 import { ReactComponent as DateIcon } from "../../../images/date.svg"
 import { dates } from "../../../utils/locales";
+import { changeMonth } from "../../../store/actions/users";
+import { useDispatch } from "react-redux";
 import styles from "./styles.module.css";
 
-const Header = ({ isAdmin, _handleDateSelect, _handleUsersSelect, date, user }) => {
+const Header = ({ isAdmin, _handleUsersSelect, date, user }) => {
+  const dispatch = useDispatch();
+  const [month, setMonth] = useState("March");
+
+  const _handleChangeMonth = (item) => {
+    const { label, value } = item;
+    dispatch(changeMonth(value))
+    setMonth(label)
+  }
+
   return (
     <div className={styles.container}>
       <div className={styles.dropdown}>
         <DateIcon />
         <Dropdown
-          value={date || "March"}
+          value={month || "March"}
           list={dates}
           placeholder="Select month"
-          onSelect={(value) => _handleDateSelect(value)} />
+          onSelect={(value) => _handleChangeMonth(value)} />
       </div>
       <div>
         {isAdmin ? (

@@ -1,16 +1,19 @@
-import { loading, fetchUsers, error } from "../actions/users";
-import axios from "axios";
+import { loading, fetchUsers, error, clear } from "../actions/users";
+import { db } from "../../config/firebase";
 
-export const fetchUserData = () => {
-  return async (dispatch, getState) => {
-    console.log('getState', getState())
+export const fetchUserData = (email) => {
+  return async (dispatch) => {
     dispatch(loading());
     try {
-      const response = await axios.get(`https://jsonplaceholder.typicode.com/users`);
-      return dispatch(fetchUsers(response.data));
+      db.ref('/').child("employees").orderByChild("email")
+        .equalTo(email).once('value', (snapshot) => {
+          const data = snapshot.val();
+          dispatch(fetchUsers(data));
+          dispatch(clear())
+        })
     }
     catch (err) {
-      return dispatch(error("Something went wrong!"));
+      return dispatch(clear())
     }
   };
 }

@@ -26,7 +26,7 @@ const Dropdown = ({ list, value, placeholder, onSelect }) => {
             list.map(({ label, value }) => (
               <div
                 className={styles.items}
-                onClick={() => _handleValues(value)}
+                onClick={() => _handleValues({ label, value })}
               >
                 <p key={`item-${label}`} className={styles.list}>
                   {label}

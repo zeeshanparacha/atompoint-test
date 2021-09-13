@@ -5,6 +5,12 @@ export const fetchUsers = (data) => ({
   payload: data
 })
 
+
+export const changeMonth = (data) => ({
+  type: constants.CHANGE_MONTH,
+  payload: data
+})
+
 export const loading = (boolean) => ({
   type: constants.LOADING,
   payload: boolean
@@ -18,4 +24,8 @@ export const error = (message) => ({
 export const success = (message) => ({
   type: constants.SUCCESS,
   payload: message
+})
+
+export const clear = () => ({
+  type: constants.CLEAR,
 })

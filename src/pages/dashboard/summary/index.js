@@ -3,11 +3,14 @@ import Card from "../../../components/Card";
 import styles from "./styles.module.css";
 import { getSummary } from "../../../utils/functions";
 import SimpleCard from "../../../components/SimpleCard";
+import { useSelector } from "react-redux";
 
-const Summary = ({ data }) => {
-  const summary = getSummary(data, 'Mar')
+const Summary = () => {
+  const user = useSelector(state => state?.users?.data);
+  const month = useSelector(state => state?.users?.month);
+  const summary = getSummary(user, month)
   const isNotPresent = summary['Total Hours'] < 1;
-  console.log('summary', summary)
+
   return (
     <div className={styles.container}>
       <Card heading="Score" textEffect="Summary">
