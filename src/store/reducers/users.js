@@ -5,7 +5,9 @@ const INITIAL_STATE = {
   loading: false,
   error: "",
   success: "",
-  month: "Mar"
+  month: "Mar",
+  allUsers: [],
+  email: ""
 };
 
 export const users = (state = INITIAL_STATE, action) => {
@@ -16,6 +18,8 @@ export const users = (state = INITIAL_STATE, action) => {
     case constants.SUCCESS: return { ...state, loading: false, success: action.payload };
     case constants.ERROR: return { ...state, loading: false, error: action.payload };
     case constants.CLEAR: return { ...state, loading: false, error: "", success: "" };
+    case constants.ALL_USERS: return { ...state, allUsers: action.payload }
+    case constants.SET_USER: return { ...state, email: action.payload }
     default:
       return state;
   }

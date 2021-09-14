@@ -1,4 +1,4 @@
-import { loading, error, login, signUp, success, clear, logOut, getAllUsers } from "../actions/auth";
+import { loading, error, login, signUp, success, clear, logOut, } from "../actions/auth";
 import { auth, db } from "../../config/firebase";
 import history from "../../utils/history";
 
@@ -8,9 +8,6 @@ export const signIn = (email, password) => {
     try {
       const response = await auth.signInWithEmailAndPassword(email, password)
       await dispatch(getUser(response.user.uid))
-      if (response.user.role === 'admin') {
-        await dispatch(getUsers(response.user.uid))
-      }
       history.push("/dashboard")
       return setTimeout(() => dispatch(clear()), 3000)
     } catch (e) {
@@ -25,28 +22,14 @@ export const signIn = (email, password) => {
   }
 }
 
-export const getUsers = uid => {
-  return async (dispatch) => {
-    try {
-      await db
-        .ref('/users').once('value').then((snapshot) => {
-          const users = snapshot.val()
-          console.log('users', users)
-          const filter = users?.filter(item => item.uid !== uid)
-          dispatch(getAllUsers(filter))
-        });
-    } catch (e) {
-      dispatch(error("something went wrong, Try later!"));
-      return setTimeout(() => dispatch(clear()), 3000)
-    }
-  }
-}
+
 
 export const getUser = uid => {
   return async (dispatch) => {
     try {
       await db
         .ref('/users/' + uid).once('value').then((snapshot) => {
+          console.log('user', snapshot.val())
           dispatch(login(snapshot.val()))
         });
     } catch (e) {
@@ -65,7 +48,8 @@ export const register = (email, password) => {
         const _id = response.user.uid;
         const user = {
           _id,
-          email
+          email,
+          role: "user"
         }
         db.ref('users/' + _id).set(user);
         dispatch(signUp(user))
@@ -136,9 +120,7 @@ export const confirmResetPassword = (code, password) => {
 export const signOut = () => {
   return async (dispatch) => {
     try {
-      await auth.signOut().then(() => {
-        dispatch(logOut())
-      })
+      auth.signOut().then(() => dispatch(logOut()))
     } catch (e) {
       dispatch(error(e));
       return setTimeout(() => dispatch(clear()), 3000)

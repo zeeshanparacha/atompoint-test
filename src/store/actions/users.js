@@ -29,3 +29,17 @@ export const success = (message) => ({
 export const clear = () => ({
   type: constants.CLEAR,
 })
+
+export const getAllUsers = (users) => {
+  return {
+    type: constants.ALL_USERS,
+    payload: users
+  }
+}
+
+export const setUser = (email) => {
+  return {
+    type: constants.SET_USER,
+    payload: email
+  }
+}

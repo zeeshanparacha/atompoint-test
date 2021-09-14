@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { fetchUserData } from "../../store/effects/users";
+import { fetchUserData, fetchAllUsers } from "../../store/effects/users";
 import { useDispatch, useSelector } from "react-redux";
 import Summary from "./summary";
 import Header from "./header";
@@ -13,26 +13,33 @@ import styles from "./styles.module.css";
 export default function App() {
   const dispatch = useDispatch()
   const loading = useSelector(state => state?.users?.loading);
-  const user = useSelector(state => state?.users?.data);
-  const email = useSelector(state => state?.auth?.user?.email);
+  const data = useSelector(state => state?.users?.data);
+  const user = useSelector(state => state?.auth?.user);
 
   useEffect(() => {
+    const { email, _id, role } = user || {}
     dispatch(fetchUserData(email))
+    if (role === 'admin') {
+      dispatch(fetchAllUsers(_id))
+    }
     // eslint-disable-next-line
-  }, [email]);
+  }, []);
 
   if (loading) return <Loader />
-  if (!user) return <Error />
 
   return (
     <div className={`${styles.container}`}>
-      <Header isAdmin />
-      <Summary />
-      <PunchInTime />
-      <div className={styles.flex}>
-        <Absents />
-        <HoursWorked />
-      </div>
+      <Header />
+      {data ? (
+        <>
+          <Summary />
+          <PunchInTime />
+          <div className={styles.flex}>
+            <Absents />
+            <HoursWorked />
+          </div>
+        </>
+      ) : <Error />}
     </div>
   );
 }

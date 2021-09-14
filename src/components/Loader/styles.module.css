@@ -4,6 +4,5 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  box-shadow: 0px 0px 4px rgb(var(--light-FFFFFF-262626), 0.5);
-  background: rgb(var(--light-FFFFFF-262626));
+  box-shadow: 0px 0px 4px #ffffff35;
 }

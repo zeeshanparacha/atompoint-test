@@ -3,15 +3,16 @@ import "firebase/auth";
 import "firebase/database";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyB4RO674xRtOGgqSXi3uibEVGeZXa2IPks",
-  authDomain: "atompoint-employee-record.firebaseapp.com",
-  databaseURL: "https://atompoint-employee-record-default-rtdb.firebaseio.com",
-  projectId: "atompoint-employee-record",
-  storageBucket: "atompoint-employee-record.appspot.com",
-  messagingSenderId: "629786536969",
-  appId: "1:629786536969:web:01b11eb1461626b2531cd8",
-  measurementId: "G-03HT25ERYB"
+  apiKey: process.env.REACT_APP_API_KEY,
+  authDomain: process.env.REACT_APP_AUTH_DOMAIN,
+  databaseURL: process.env.REACT_APP_DB,
+  projectId: process.env.REACT_APP_PROJECT_ID,
+  storageBucket: process.env.REACT_APP_STORAGE_BUCKET,
+  messagingSenderId: process.env.REACT_APP_MESSAGE_SENDER_ID,
+  appId: process.env.REACT_APP_APP_ID,
+  measurementId: process.env.REACT_APP_MEASUREMENT_ID
 };
+
 firebase.initializeApp(firebaseConfig);
 
 export const auth = firebase.auth();

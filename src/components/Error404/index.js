@@ -6,7 +6,7 @@ const Error = () => {
   return (
     <div className={styles.container}>
       <div className={styles.img}>
-        <img src={ErrIcon} />
+        <img src={ErrIcon} alt="error" />
       </div>
       <h1>No results found</h1>
       <p>Try loggin with different account</p>

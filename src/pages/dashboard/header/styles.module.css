@@ -6,14 +6,17 @@
   margin-bottom: 24px;
   border-radius: 5px;
 }
+
 .container > div {
-  width: 180px;
+  width: 222px;
 }
+
 .information {
   display: flex;
   align-items: center;
   justify-content: flex-end;
 }
+
 .icon {
   width: 36px;
   height: 36px;
@@ -24,9 +27,11 @@
   border-radius: 50%;
   margin-right: 8px;
 }
+
 .icon svg path {
   fill: #262626;
 }
+
 .dropdown {
   display: flex;
   align-items: center;
@@ -37,23 +42,49 @@
   box-shadow: 0px 1px 8px rgb(0 0 0 / 3%);
   padding: 0px 10px;
   border-radius: 2px;
+  height: 40px;
 }
+
 .dropdown > div > div:first-child {
   background: transparent !important;
   border: none;
   height: 40px;
 }
+
 .dropdown > div > div:last-child {
   top: 40px;
-  left: -25px;
-  width: 125%;
+  left: -27px;
+  width: 120%;
 }
+.dropdown p {
+  color: #262626;
+  margin-left: 8px;
+  font-size: 14px;
+  line-height: 22px;
+}
+
 .dropdown > div > div p {
   margin: 0px;
 }
+
 .dropdown svg path {
   fill: #808080;
 }
+
 .container > div:first-child > svg path {
   stroke: #808080;
+}
+
+@media only screen and (max-width: 575px) {
+  .container {
+    flex-direction: column;
+  }
+  .container > div {
+    width: 100%;
+  }
+  .dropdown > div > div:last-child {
+    top: 40px;
+    left: -27px;
+    width: 112%;
+  }
 }

@@ -3,19 +3,31 @@ import Dropdown from "../../../components/Dropdown";
 import { ReactComponent as User } from "../../../images/email.svg"
 import { ReactComponent as DateIcon } from "../../../images/date.svg"
 import { dates } from "../../../utils/locales";
-import { changeMonth } from "../../../store/actions/users";
-import { useDispatch } from "react-redux";
+import { changeMonth, setUser } from "../../../store/actions/users";
+import { fetchUserData, } from "../../../store/effects/users";
+import { useDispatch, useSelector } from "react-redux";
 import styles from "./styles.module.css";
 
-const Header = ({ isAdmin, _handleUsersSelect, date, user }) => {
+const Header = () => {
   const dispatch = useDispatch();
   const [month, setMonth] = useState("March");
+  const user = useSelector(state => state?.auth?.user);
+  const filterUser = useSelector(state => state?.users?.email);
+  const allUsers = useSelector(state => state?.users?.allUsers);
+  const usersList = allUsers?.map(({ email }) => ({ label: email, value: email }))
 
   const _handleChangeMonth = (item) => {
     const { label, value } = item;
     dispatch(changeMonth(value))
     setMonth(label)
   }
+
+  const _handleChangeUser = (email) => {
+    dispatch(fetchUserData(email))
+    dispatch(setUser(email))
+  }
+
+  const { email, role } = user || {};
 
   return (
     <div className={styles.container}>
@@ -28,18 +40,20 @@ const Header = ({ isAdmin, _handleUsersSelect, date, user }) => {
           onSelect={(value) => _handleChangeMonth(value)} />
       </div>
       <div>
-        {isAdmin ? (
+        {role === 'admin' ? (
           <div className={styles.dropdown}>
             <User />
             <Dropdown
-              value={user}
+              value={filterUser || email}
               placeholder="Select user"
-              onSelect={(value) => _handleUsersSelect(value)} />
+              list={usersList}
+              onSelect={(item) => _handleChangeUser(item?.label)}
+            />
           </div>
         ) : (
-          <div className={styles.information}>
-            <div className={styles.icon}><User /></div>
-            <p>{user}</p>
+          <div className={styles.dropdown}>
+            <User />
+            <p>{email}</p>
           </div>
         )}
       </div>

@@ -8,16 +8,18 @@ export const LoginValidator = ({ children }) => {
 
   useEffect(() => {
     const subscriber = auth.onAuthStateChanged((user) => {
-      setAuthenticated(user)
-      if (initializing) setInitializing(false)
+      setAuthenticated(user);
+      if (initializing) setInitializing(false);
     });
-    return subscriber
+    return subscriber;
     // eslint-disable-next-line
   }, []);
 
   if (initializing) return null;
-  if (!authenticated) return <Redirect to="/" />
-  return <div>{children}</div>
+
+  if (!authenticated) return <Redirect to="/" />;
+
+  return <div>{children}</div>;
 };
 
-export default LoginValidator
+export default LoginValidator;
